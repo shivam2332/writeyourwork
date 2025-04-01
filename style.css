@@ -1,0 +1,415 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap'); /* Updated weights */
+
+/* for whole documents */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif; /* Changed default font to Poppins */
+}
+
+/* for hide scroll bar */
+::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    position: relative;
+    min-height: 100vh; /* Use min-height for flexibility */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Modern dark background with a subtle gradient */
+    background: linear-gradient(135deg, #2b3245, #1c1e2a);
+    padding: 20px 0; /* Add some padding for smaller viewports */
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Align content to the top */
+    flex-direction: column;
+    margin: 0 400px; /* Kept original large margins */
+    min-width: 500px;
+    max-width: 1000px;
+    /* Soft light background replacing the gradient */
+    background-color: #ffffff;
+    color: #333; /* Default text color for the container */
+    border-radius: 15px; /* Slightly adjusted radius */
+    padding: 30px; /* Increased padding */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Softer shadow for depth */
+    height: auto; /* Allow height to adjust based on content */
+    max-height: 90vh; /* Prevent container from exceeding viewport height */
+}
+
+/* header */
+.container header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 25px; /* Adjusted margin */
+}
+
+header h1 {
+    font-size: 28px; /* Slightly adjusted size */
+    font-weight: 600; /* Using Poppins weights */
+    margin-bottom: 15px; /* Adjusted margin */
+    letter-spacing: 0.5px; /* Reduced letter spacing */
+    word-spacing: 2px; /* Reduced word spacing */
+    color: #1c1e2a; /* Darker heading color */
+}
+
+/* input-section */
+header .input-section {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px; /* Use gap for spacing */
+    /* Removed fixed height/width properties here, handled by children */
+}
+
+.input-section input {
+    /* Removed margin-right, using gap now */
+    max-width: 100%;
+}
+
+.max-w-xs {
+    max-width: 20rem; /* Kept original utility class */
+}
+
+.w-full {
+    width: 100%; /* Kept original utility class */
+}
+
+.input {
+    border-radius: 8px; /* Softer radius */
+    height: 3rem;
+    /* Subtle border */
+    border: 1px solid #d1d5db;
+    flex-grow: 1; /* Allow input to grow */
+    flex-shrink: 1;
+    padding: 0rem 1rem;
+    font-size: 1rem; /* Adjusted font size */
+    line-height: 1.5; /* Adjusted line height */
+    background-color: #f9fafb; /* Light background for input */
+    color: #374151; /* Input text color */
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input:focus {
+    outline: none;
+    border-color: #3b82f6; /* Blue border on focus */
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2); /* Focus ring */
+}
+
+/* todofilters */
+.todos-filter, .filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    /* height: 100%; */ /* Avoid fixed height here */
+    margin-bottom: 15px; /* Adjusted margin */
+}
+
+.filters {
+    margin-top: 15px; /* Adjusted margin */
+    border-top: 1px solid #e5e7eb; /* Add separator line */
+    padding-top: 15px; /* Space above filters */
+}
+
+.todos-list {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */ /* Let items stack naturally */
+    align-items: center;
+    /* min-height: 100%; */ /* Remove min-height */
+    max-height: 45vh; /* Adjusted max-height relative to container changes */
+    overflow-y: auto;
+    width: 100%;
+    padding-right: 5px; /* Space for scrollbar if it appears (though hidden) */
+}
+
+/* Re-enable scrollbar visibility for better UX if needed, but styled subtly */
+ .todos-list::-webkit-scrollbar {
+     display: block; /* Make it visible */
+     width: 6px;
+ }
+ .todos-list::-webkit-scrollbar-track {
+     background: #f1f1f1;
+     border-radius: 10px;
+ }
+ .todos-list::-webkit-scrollbar-thumb {
+     background: #c1c1c1;
+     border-radius: 10px;
+ }
+ .todos-list::-webkit-scrollbar-thumb:hover {
+     background: #a1a1a1;
+ }
+
+
+.todos-list .todo-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px; /* Adjusted padding */
+    width: 100%;
+}
+
+.todo-item {
+    /* Modern item background and subtle border */
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px; /* Matched input radius */
+    margin-bottom: 8px; /* Adjusted spacing */
+    transition: background-color 0.2s ease;
+}
+.todo-item:hover {
+    background-color: #f9fafb; /* Slight hover effect */
+}
+
+.todo-item p {
+    margin-right: 10px;
+    font-size: 1.05rem; /* Adjusted size */
+    color: #374151; /* Consistent text color */
+    word-break: break-word; /* Prevent long words from overflowing */
+    flex-grow: 1; /* Allow text to take available space */
+}
+
+.todo-item .todo-actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: end;
+    /* width: 100%; */ /* Remove width, let it shrink */
+    /* height: 100%; */ /* Remove height */
+    flex-shrink: 0; /* Prevent action buttons from shrinking */
+    gap: 8px; /* Use gap for spacing */
+}
+
+/* Removed margin-right from button:not(:last-child) */
+/* .todo-actions button:not(:last-child){
+    margin-right: 10px;
+} */
+
+.di, .ci {
+    pointer-events: none; /* Kept original rule */
+}
+
+.line {
+    text-decoration: line-through;
+    opacity: 0.6; /* Make completed items less prominent */
+    color: #6b7280; /* Dimmer text color for completed */
+}
+
+
+/*buttons styling*/
+.btn {
+    cursor: pointer;
+    user-select: none;
+    border: none;
+    outline: none;
+    text-align: center;
+    border-radius: 8px; /* Matched input radius */
+    height: 2.8rem; /* Adjusted height */
+    min-height: 2.8rem;
+    text-transform: capitalize; /* Less aggressive capitalization */
+    /* border-width: 1px; */ /* Removing border width, adding border on hover for some */
+    /* animation: button-pop var(--animation-btn,.25s)ease-in-out; */ /* Remove default animation */
+    /* flex-wrap: wrap; */ /* Buttons shouldn't wrap typically */
+    flex-shrink: 0;
+    justify-content: center;
+    align-items: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: .875rem;
+    font-weight: 500; /* Adjusted weight */
+    line-height: 1; /* Adjusted line-height */
+    text-decoration-line: none;
+    /* Unified transition */
+    transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
+    display: inline-flex;
+    background-color: #e5e7eb; /* Default subtle background */
+    color: #374151; /* Default text color */
+    border: 1px solid transparent; /* Placeholder for border transitions */
+}
+
+.btn:hover {
+    /* background-color: #d1d5db; Slightly darker hover */
+    /* color: #1f2937; */
+    /* Specific hovers defined below override this */
+    transform: translateY(-1px); /* Slight lift on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08); /* Subtle shadow on hover */
+}
+.btn:active {
+    transform: translateY(0px); /* Press down effect */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.btn-add {
+    /* Modern Green */
+    background-color: #10b981;
+    color: white;
+    border-color: #10b981;
+}
+
+.btn-add:hover {
+    background-color: #059669; /* Darker green */
+    color: white;
+    border-color: #059669;
+}
+
+.btn-success {
+    /* Using the same green as add for consistency */
+    background-color: #10b981;
+    color: white;
+    border-color: #10b981;
+}
+
+.btn-success:hover {
+    background-color: #059669;
+    color: white;
+    border-color: #059669;
+}
+
+.btn-error {
+    /* Modern Red */
+    background-color: #ef4444;
+    color: white;
+    border-color: #ef4444;
+}
+
+.btn-error:hover {
+    background-color: #dc2626; /* Darker red */
+    color: white;
+    border-color: #dc2626;
+}
+
+/* Dropdown */
+.dropbtn {
+    /* Use a neutral or primary theme color */
+    background-color: #3b82f6; /* Example blue */
+    color: white;
+    padding: 10px 16px;
+    font-size: 14px; /* Adjusted font size */
+    border: none;
+    cursor: pointer;
+    border-radius: 8px; /* Matched button radius */
+    transition: background-color 0.2s ease; /* Added transition */
+    height: 2.8rem; /* Match button height */
+    display: inline-flex; /* Align icon/text if any */
+    align-items: center; /* Align icon/text if any */
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #ffffff; /* Clean white background */
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.1); /* Softer shadow */
+    z-index: 1;
+    border-radius: 8px; /* Rounded corners */
+    overflow: hidden; /* Ensure children conform to radius */
+    margin-top: 4px; /* Small gap from button */
+}
+
+.dropdown-content a {
+    color: #374151; /* Dark text */
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px; /* Consistent font size */
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.dropdown-content a:hover {
+    background-color: #f3f4f6; /* Light gray hover */
+    color: #1f2937; /* Slightly darker text on hover */
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #2563eb; /* Darker blue on hover */
+}
+
+
+/* Responsive */
+@media only screen and (max-width: 900px) { /* Adjust breakpoint for large margins */
+    .container {
+        margin: 0 50px; /* Reduce side margins significantly */
+        min-width: calc(100% - 100px);
+    }
+}
+
+@media only screen and (max-width: 530px) {
+    body {
+        padding: 10px 0; /* Reduce body padding */
+    }
+    .container {
+        margin: 0 15px; /* Further reduce margins */
+        min-width: calc(100% - 30px); /* Use almost full width */
+        padding: 20px; /* Adjust padding */
+        max-height: 95vh; /* Allow more height on mobile */
+    }
+
+    header h1 {
+        font-size: 24px; /* Smaller heading */
+    }
+
+    header .input-section {
+        flex-direction: column; /* Stack input and button */
+        align-items: stretch; /* Make children full width */
+    }
+
+    .input-section input {
+       margin-right: 0; /* Reset margin */
+       margin-bottom: 10px; /* Add space below input when stacked */
+    }
+    .input-section .btn-add {
+        width: 100%; /* Make button full width when stacked */
+    }
+
+    .todos-filter, .filters {
+        flex-direction: column; /* Stack filter controls */
+        align-items: flex-start; /* Align to left */
+        gap: 10px; /* Add gap between stacked items */
+    }
+    .filters {
+      align-items: stretch; /* Stretch filter buttons */
+    }
+     .filters .dropdown {
+        width: 100%; /* Make dropdown full width */
+     }
+     .filters .dropbtn {
+        width: 100%; /* Make dropdown button full width */
+        justify-content: center; /* Center text */
+     }
+
+
+    .todo-item {
+        flex-direction: column; /* Stack content and actions */
+        align-items: flex-start; /* Align content left */
+        padding: 10px;
+    }
+    .todo-item p {
+        margin-bottom: 8px; /* Add space below text */
+        font-size: 1rem; /* Adjust size for mobile */
+    }
+    .todo-item .todo-actions {
+        width: 100%; /* Make actions take full width */
+        justify-content: flex-end; /* Keep buttons to the right */
+    }
+}

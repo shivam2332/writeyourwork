@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<!-- Added lang attribute for accessibility and SEO -->
+<html lang="en" data-theme="bumblebee">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- Ensures proper rendering and touch zooming -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- IE compatibility -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Page Title -->
+    <title>Modern Todo List</title> <!-- Slightly more descriptive title -->
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="to do.png"> <!-- Ensure this path is correct -->
+
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="style.css"> <!-- Ensure this path is correct -->
+
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+
+<body>
+
+    <!-- Main Todo Container -->
+    <div class="container">
+
+        <!-- Header: Title, Input, and Add Button -->
+        <header>
+            <h1>Todo List</h1>
+
+            <div class="input-section">
+                <!-- Added a label for accessibility, visually hidden if desired via CSS -->
+                <label for="todo-input" class="sr-only">Add a new todo item</label>
+                <input id="todo-input" type="text" placeholder="📑 Add your todo here.."
+                    class="input w-full max-w-xs" />
+                <!-- Added aria-label for screen reader users as button only contains an icon -->
+                <button id="add-button" class="btn btn-add" aria-label="Add todo item">
+                    <i class="bx bx-plus bx-sm" aria-hidden="true"></i> <!-- aria-hidden hides decorative icon from screen readers -->
+                </button>
+            </div>
+        </header>
+
+        <!-- Bulk Delete Controls -->
+        <div class="todos-filter">
+             <!-- Note: .btn-ghost class was present but not defined in the provided CSS.
+                  It will inherit base .btn styles unless you add specific styles for .btn-ghost -->
+            <button id="delete-selected" class="btn btn-ghost delete-selected-btn">
+                Delete Selected
+            </button>
+            <button id="delete-all" class="btn btn-ghost delete-all-btn">
+                Delete All
+            </button>
+        </div>
+
+        <!-- Todo List Area -->
+        <!-- Added aria-live="polite" so screen readers announce changes (additions/deletions) -->
+        <ul id="all-todos" class="todos-list" aria-live="polite">
+            <!-- Dynamically added todo items will go here -->
+            <!-- Example Structure (added by JS):
+            <li class="todo-item">
+                <input type="checkbox" id="todo-1" aria-labelledby="todo-label-1">
+                <p id="todo-label-1">Example Task</p>
+                <div class="todo-actions">
+                    <button class="btn btn-success" aria-label="Mark Example Task as complete/incomplete"><i class='bx bx-check bx-sm'></i></button>
+                    <button class="btn btn-error" aria-label="Delete Example Task"><i class='bx bx-trash bx-sm'></i></button>
+                </div>
+            </li>
+            -->
+        </ul>
+
+        <!-- Filters and Counters -->
+        <div class="filters">
+            <!-- Filter Dropdown -->
+            <div class="dropdown">
+                <!-- Added ARIA attributes for accessibility -->
+                <button class="dropbtn" aria-haspopup="true" aria-expanded="false">Filter</button>
+                <!-- Added role="menu" for accessibility -->
+                <div class="dropdown-content" role="menu">
+                    <!-- Added role="menuitem" for accessibility -->
+                    <a href="#" id="all" role="menuitem">All</a>
+                    <a href="#" id="rem" role="menuitem">Pending</a>
+                    <a href="#" id="com" role="menuitem">Completed</a>
+                </div>
+            </div>
+
+            <!-- Counters -->
+            <div class="task-counts"> <!-- Wrapped counts in a div for potential better flex alignment -->
+                <div class="completed-task">
+                    <!-- Added aria-live="polite" to announce count changes -->
+                    <p>Completed: <span id="c-count" aria-live="polite">0</span></p>
+                </div>
+                <div class="remaining-task">
+                    <!-- Added aria-live="polite" to announce count changes -->
+                    <p>Total Tasks: <span id="r-count" aria-live="polite">0</span></p>
+                </div>
+            </div> <!-- End task-counts -->
+        </div> <!-- End filters -->
+
+    </div> <!-- End container -->
+
+    <!-- JavaScript -->
+    <script src="index.js"></script> <!-- Ensure this path is correct -->
+
+</body>
+
+</html>
